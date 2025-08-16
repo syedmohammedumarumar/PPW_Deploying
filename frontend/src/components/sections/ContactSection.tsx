@@ -79,7 +79,7 @@ const ContactSection = () => {
           <h2 className="text-4xl font-serif font-bold gradient-text text-foreground mb-6 tracking-tight">
             Let's Work Together
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Ready to turn your ideas into reality? I'd love to hear about your next project and explore how we can collaborate.
           </p>
         </div>
@@ -171,8 +171,8 @@ const ContactSection = () => {
                 <div className="space-y-6 sm:space-y-8">
                   {/* Name and Email Row */}
                   <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-                    <div className="space-y-2">
-                      <label className="text-xs sm:text-sm font-medium text-foreground">Full Name</label>
+                    <div className="flex flex-col">
+                      <label className="text-xs sm:text-sm font-medium text-foreground mx-2 mb-2">Full Name</label>
                       <Input
                         type="text"
                         name="name"
@@ -182,8 +182,8 @@ const ContactSection = () => {
                         className="bg-background/50 border-border/50 focus:border-primary/50 h-12 sm:h-14 text-sm sm:text-lg"
                       />
                     </div>
-                    <div className="space-y-2">
-                      <label className="text-xs sm:text-sm font-medium text-foreground">Email Address</label>
+                    <div className="flex flex-col">
+                      <label className="text-xs sm:text-sm font-medium mx-2 text-foreground mb-2">Email Address</label>
                       <Input
                         type="email"
                         name="email"
@@ -191,13 +191,13 @@ const ContactSection = () => {
                         value={formData.email}
                         onChange={handleChange}
                         className="bg-background/50 border-border/50 focus:border-primary/50 h-12 sm:h-14 text-sm sm:text-lg"
-                      />
+                      /> 
                     </div>
                   </div>
 
                   {/* Message */}
-                  <div className="space-y-2">
-                    <label className="text-xs sm:text-sm font-medium text-foreground">Project Details</label>
+                  <div className="flex flex-col">
+                    <label className="text-xs sm:text-sm font-medium mx-2 text-foreground mb-2">Project Details</label>
                     <Textarea
                       name="message"
                       placeholder="Tell me about your project goals, timeline, and any specific requirements you have in mind..."

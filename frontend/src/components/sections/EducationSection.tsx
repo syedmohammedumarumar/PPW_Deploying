@@ -78,13 +78,58 @@ const EducationSection = () => {
           {education.map((edu, index) => (
             <Card key={index} className="responsive-card bg-primary/5 border-border/50 hover:border-primary/30 transition-all duration-300 hover:scale-[1.02]">
               <CardContent className="p-4 sm:p-6 md:p-8">
-                <div className="flex items-start gap-3 sm:gap-4">
-                  {/* Icon - Responsive */}
+                {/* Mobile Layout - Stacked */}
+                <div className="block sm:hidden space-y-3">
+                  {/* Mobile Header with small icon */}
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="p-1.5 bg-primary/10 rounded-full flex-shrink-0">
+                      <GraduationCap className="h-4 w-4 text-primary" />
+                    </div>
+                    <h3 className="text-base font-semibold text-foreground leading-tight flex-1">
+                      {edu.degree}
+                    </h3>
+                  </div>
+                  
+                  {/* Mobile Institution & Period */}
+                  <div className="space-y-1">
+                    <p className="text-primary font-medium text-sm">
+                      {edu.institution}
+                    </p>
+                    <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                      <Calendar className="h-3 w-3 flex-shrink-0" />
+                      <span>{edu.period}</span>
+                    </div>
+                  </div>
+
+                  {/* Mobile Description */}
+                  <p className="text-muted-foreground leading-relaxed text-sm text-justify">
+                    {edu.description}
+                  </p>
+
+                  {/* Mobile Key Subjects */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Code className="h-3 w-3 text-primary flex-shrink-0" />
+                      <span className="text-xs font-medium">Key Subjects</span>
+                    </div>
+                    <div className="flex flex-wrap gap-1">
+                      {edu.keySubjects.map((subject) => (
+                        <Badge key={subject} variant="secondary" className="text-xs hover:bg-primary/20 transition-colors">
+                          {subject}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Desktop Layout - Side by side */}
+                <div className="hidden sm:flex items-start gap-3 sm:gap-4">
+                  {/* Desktop Icon */}
                   <div className="p-2 sm:p-3 bg-primary/10 rounded-full flex-shrink-0">
                     <GraduationCap className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                   </div>
                   
-                  {/* Content - Responsive */}
+                  {/* Desktop Content */}
                   <div className="flex-1 space-y-3 sm:space-y-4 min-w-0">
                     <div>
                       <h3 className="text-lg sm:text-xl font-semibold text-foreground leading-tight">
@@ -105,7 +150,7 @@ const EducationSection = () => {
                       {edu.description}
                     </p>
 
-                    {/* Key Subjects - Responsive */}
+                    {/* Desktop Key Subjects */}
                     <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <Code className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
@@ -141,10 +186,8 @@ const EducationSection = () => {
               </h3>
             </div>
             
-            <p className="text-muted-foreground mb-4 sm:mb-6 text-center text-sm sm:text-base leading-relaxed px-2">
-              Beyond formal education, I actively engage in self-learning through online courses, 
-              documentation, and hands-on projects to stay updated with the latest technologies 
-              in web development, AI/ML, and software engineering.
+            <p className="text-muted-foreground mb-4 sm:mb-6 text-center text-sm sm:text-base leading-relaxed px-2 text-justify">
+              Beyond formal education, I actively engage in self-learning through online courses, documentation, and hands-on projects to stay updated with the latest technologies in web development, AI/ML, and software engineering.
             </p>
             
             {/* Learning Methods - Responsive Layout */}

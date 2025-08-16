@@ -46,7 +46,7 @@ const ProjectsSection = () => {
     <section id="projects" className="py-5 px-6 lg:px-8 bg-secondary/60 rounded-md mt-2">
       <div className="max-w-7xl mx-auto ">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-serif gradient-text font-bold text-foreground mb-4">
+         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold gradient-text mb-3 sm:mb-4">
             Featured Projects
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">

@@ -219,7 +219,7 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div className="absolute bottom-8 left-1/1 transform -translate-x-1/2 animate-bounce">
         <Button variant="ghost" size="icon" onClick={scrollToAbout} className="rounded-full hover:bg-primary/60">
           <ArrowDown className="h-6 w-6" />
         </Button>

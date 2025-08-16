@@ -5,13 +5,39 @@ export function CustomCursor() {
   const [trailingPosition, setTrailingPosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false)
   
   const animationFrameRef = useRef<number>()
   const positionRef = useRef({ x: 0, y: 0 })
   const trailingPositionRef = useRef({ x: 0, y: 0 })
 
-  // Setup styles only once
+  // Check if device is desktop
   useEffect(() => {
+    const checkIsDesktop = () => {
+      // Check for hover capability (desktop devices)
+      const hasHover = window.matchMedia('(hover: hover)').matches
+      // Check for fine pointer (mouse)
+      const hasFinePointer = window.matchMedia('(pointer: fine)').matches
+      // Check screen size (optional additional check)
+      const isLargeScreen = window.innerWidth >= 1024
+      
+      setIsDesktop(hasHover && hasFinePointer && isLargeScreen)
+    }
+
+    checkIsDesktop()
+    
+    // Listen for resize to re-check
+    window.addEventListener('resize', checkIsDesktop)
+    
+    return () => {
+      window.removeEventListener('resize', checkIsDesktop)
+    }
+  }, [])
+
+  // Setup styles only on desktop
+  useEffect(() => {
+    if (!isDesktop) return
+
     const styleId = 'custom-cursor-styles'
     
     // Remove existing styles if they exist
@@ -24,8 +50,8 @@ export function CustomCursor() {
     const style = document.createElement('style')
     style.id = styleId
     style.textContent = `
-      /* Hide default cursor on desktop */
-      @media (hover: hover) and (pointer: fine) {
+      /* Hide default cursor on desktop only */
+      @media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
         * {
           cursor: none !important;
         }
@@ -118,10 +144,12 @@ export function CustomCursor() {
         styleToRemove.remove()
       }
     }
-  }, [])
+  }, [isDesktop])
 
-  // Setup event listeners and animation only once
+  // Setup event listeners and animation only on desktop
   useEffect(() => {
+    if (!isDesktop) return
+
     const updateTrailingPosition = () => {
       const current = positionRef.current
       const trailing = trailingPositionRef.current
@@ -157,8 +185,8 @@ export function CustomCursor() {
 
     // Add event listeners
     document.addEventListener("mousemove", updatePosition)
-    document.addEventListener("mouseleave", handleDocumentMouseLeave) // Changed from mouseout to mouseleave
-    document.addEventListener("mouseenter", () => setIsVisible(true)) // Show cursor when entering document
+    document.addEventListener("mouseleave", handleDocumentMouseLeave)
+    document.addEventListener("mouseenter", () => setIsVisible(true))
 
     // Start the trailing animation
     updateTrailingPosition()
@@ -200,9 +228,10 @@ export function CustomCursor() {
         el.removeEventListener("mouseleave", handleElementMouseLeave)
       })
     }
-  }, []) // Empty dependency array - run only once
+  }, [isDesktop])
 
-  if (!isVisible) return null
+  // Don't render anything on mobile devices
+  if (!isDesktop || !isVisible) return null
 
   return (
     <>

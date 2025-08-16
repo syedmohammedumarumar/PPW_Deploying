@@ -78,47 +78,93 @@ const Navigation = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-2">
-            <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-              className="rounded-full"
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
+          <div className="md:hidden flex items-center justify-center space-x-2">
+            <div className="flex items-center justify-center">
+              <ThemeToggle />
+            </div>
+            <div className="flex items-center justify-center">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsOpen(!isOpen)}
+                className="rounded-full hover:bg-primary/10 transition-all duration-200"
+              >
+                <div className="relative w-6 h-6 flex items-center justify-center">
+                  <Menu className={`h-6 w-6 absolute transition-all duration-300 ${isOpen ? 'rotate-90 opacity-0' : 'rotate-0 opacity-100'}`} />
+                  <X className={`h-6 w-6 absolute transition-all duration-300 ${isOpen ? 'rotate-0 opacity-100' : '-rotate-90 opacity-0'}`} />
+                </div>
+              </Button>
+            </div>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 glass-effect border-t border-border">
-            <div className="px-6 py-4 space-y-4">
-              {navItems.map((item) => (
-                <button
+        {/* Mobile Navigation Overlay */}
+        <div className={`md:hidden fixed inset-0 top-16 transition-all duration-300 ${
+          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}>
+          {/* Backdrop */}
+          <div 
+            className={`absolute inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-300 ${
+              isOpen ? 'opacity-100' : 'opacity-0'
+            }`}
+            onClick={() => setIsOpen(false)}
+          />
+          
+          {/* Menu Panel */}
+          <div className={`relative bg-black border-t border-border shadow-2xl transform transition-all duration-300 ease-out ${
+            isOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
+          }`}>
+            <div className="px-6 py-6 space-y-2">
+              {navItems.map((item, index) => (
+                <div
                   key={item.name}
-                  onClick={() => {
-                    if (item.href.startsWith('#')) {
-                      handleScroll(item.href.substring(1));
-                    } else {
-                      window.location.href = item.href;
-                      setIsOpen(false);
-                    }
-                  }}
-                  className="block text-foreground hover:text-primary transition-colors font-medium w-full text-left"
+                  className={`transform transition-all duration-300 ease-out ${
+                    isOpen 
+                      ? 'translate-x-0 opacity-100' 
+                      : 'translate-x-4 opacity-0'
+                  }`}
+                  style={{ transitionDelay: `${index * 50}ms` }}
                 >
-                  {item.name}
-                </button>
+                  <button
+                    onClick={() => {
+                      if (item.href.startsWith('#')) {
+                        handleScroll(item.href.substring(1));
+                      } else {
+                        window.location.href = item.href;
+                        setIsOpen(false);
+                      }
+                    }}
+                    className="block w-full text-left px-4 py-3 rounded-lg text-foreground hover:text-primary hover:bg-primary/5 transition-all duration-200 font-medium border border-transparent hover:border-primary/20 group"
+                  >
+                    <span className="flex items-center justify-between">
+                      {item.name}
+                      <span className="w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-6"></span>
+                    </span>
+                  </button>
+                </div>
               ))}
-              <Link to="/all-projects" onClick={() => setIsOpen(false)}>
-                <Button variant="outline" size="sm" className="w-full">
-                  All Projects
-                </Button>
-              </Link>
+              
+              <div 
+                className={`pt-4 transform transition-all duration-300 ease-out ${
+                  isOpen 
+                    ? 'translate-x-0 opacity-100' 
+                    : 'translate-x-4 opacity-0'
+                }`}
+                style={{ transitionDelay: `${navItems.length * 50}ms` }}
+              >
+                <Link to="/all-projects" onClick={() => setIsOpen(false)}>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-[1.02] hover:shadow-md"
+                  >
+                    All Projects
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );

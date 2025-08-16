@@ -17,7 +17,7 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="py-10 px-6 lg:px-8 bg-secondary/60 rounded-md">
+    <section id="about" className="py-8 lg:py-10 px-4 sm:px-6 lg:px-8 bg-secondary/60 rounded-md">
       <style>{`
         .gradient-text {
           background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
@@ -48,39 +48,33 @@ const AboutSection = () => {
       
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl gradient-text font-serif font-bold mb-6">
+        <div className="text-center mb-8 lg:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl gradient-text font-serif font-bold mb-4 lg:mb-6">
             About Me
           </h2>
-          <div className="max-w-3xl mx-auto space-y-4">
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              I'm a passionate Problem Solver and Full Stack Developer who loves turning 
-              real-world challenges into practical digital solutions. For me, coding is 
-              not just about writing lines of code — it's about identifying problems, 
-              understanding them deeply, and crafting impactful solutions through technology.
+          <div className="max-w-3xl mx-auto space-y-3 lg:space-y-4 px-2 sm:px-0">
+            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed text-justify">
+              I'm a passionate Problem Solver and Full Stack Developer who loves turning real-world challenges into practical digital solutions. For me, coding is not just about writing lines of code — it's about identifying problems, understanding them deeply, and crafting impactful solutions through technology.
             </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Beyond development, I enjoy exploring new technologies, working on projects 
-              that push my creativity, and sharing knowledge with others. I strongly believe 
-              that every problem carries the seed of a solution, and I strive to bring those 
-              solutions to life through innovation and development.
+            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed text-justify">
+              Beyond development, I enjoy exploring new technologies, working on projects that push my creativity, and sharing knowledge with others. I strongly believe that every problem carries the seed of a solution, and I strive to bring those solutions to life through innovation and development.
             </p>
           </div>
         </div>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-8 lg:mb-12">
           {skills.map((skill, index) => (
             <Card 
               key={index} 
               className="bg-primary/5 border-border/50 hover:border-primary/50 transition-all duration-300 group animate-float hover:scale-105"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
-              <CardContent className="p-6 text-center">
-                <div className="text-primary mb-4 group-hover:scale-110 transition-transform mx-auto w-fit">
+              <CardContent className="p-4 lg:p-6 text-center">
+                <div className="text-primary mb-3 lg:mb-4 group-hover:scale-110 transition-transform mx-auto w-fit">
                   {skill.icon}
                 </div>
-                <h3 className="font-semibold text-foreground mb-2 text-sm">
+                <h3 className="font-semibold text-foreground mb-2 text-xs sm:text-sm">
                   {skill.title}
                 </h3>
                 <p className="text-xs text-muted-foreground">
@@ -94,24 +88,24 @@ const AboutSection = () => {
         {/* Bottom Section with Decorative Elements */}
         <div className="relative">
           {/* Decorative Background Elements */}
-          <div className="absolute top-0 left-1/4 w-32 h-32 bg-primary/10 rounded-full blur-2xl animate-pulse-glow"></div>
-          <div className="absolute bottom-0 right-1/4 w-24 h-24 bg-accent/10 rounded-full blur-2xl animate-pulse-glow" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-0 left-1/4 w-24 sm:w-32 h-24 sm:h-32 bg-primary/10 rounded-full blur-2xl animate-pulse-glow"></div>
+          <div className="absolute bottom-0 right-1/4 w-16 sm:w-24 h-16 sm:h-24 bg-accent/10 rounded-full blur-2xl animate-pulse-glow" style={{ animationDelay: '1s' }}></div>
           
           {/* Interests Section */}
-          <div className="relative bg-primary/5 rounded-2xl p-8 border border-primary/20">
-            <h3 className="text-xl font-semibold text-foreground mb-6 text-center">
+          <div className="relative bg-primary/5 rounded-2xl p-4 sm:p-6 lg:p-8 border border-primary/20">
+            <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-foreground mb-4 lg:mb-6 text-center">
               When I'm not coding, you'll find me:
             </h3>
-            <div className="flex flex-wrap justify-center gap-6">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 lg:gap-6">
               {interests.map((interest, index) => (
                 <div 
                   key={index} 
-                  className="flex items-center gap-3 bg-background/50 rounded-full px-4 py-2 border border-primary/20 hover:border-primary/50 transition-all duration-300 hover:scale-105"
+                  className="flex items-center gap-2 sm:gap-3 bg-background/50 rounded-full px-3 sm:px-4 py-2 border border-primary/20 hover:border-primary/50 transition-all duration-300 hover:scale-105"
                 >
-                  <div className="text-primary">
+                  <div className="text-primary flex-shrink-0">
                     {interest.icon}
                   </div>
-                  <span className="text-muted-foreground text-sm">
+                  <span className="text-muted-foreground text-xs sm:text-sm">
                     {interest.text}
                   </span>
                 </div>
