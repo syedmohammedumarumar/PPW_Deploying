@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Professional Portfolio Design System with Blue Color Palette
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Light Mode - Clean Blues & Whites */
+    --background: 0 0% 100%;
+    --foreground: 215 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    /* Primary - Professional Blue */
+    --primary: 220 85% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 220 90% 60%;
+
+    /* Secondary - Light Blue */
+    --secondary: 210 100% 97%;
+    --secondary-foreground: 220 90% 56%;
+
+    /* Muted - Subtle Grays */
+    --muted: 220 15% 97%;
+    --muted-foreground: 215 15% 50%;
+
+    /* Accent - Vibrant Blue */
+    --accent: 215 100% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 220 90% 56%;
+
+    --radius: 0.75rem;
+
+    /* Custom Design Tokens */
+    --hero-gradient: linear-gradient(135deg, hsl(220 90% 56%) 0%, hsl(215 100% 60%) 100%);
+    --glass-bg: 0 0% 100% / 0.8;
+    --glass-border: 220 20% 90% / 0.3;
+    --shadow-primary: 220 90% 56% / 0.15;
+    --shadow-soft: 220 10% 20% / 0.1;
+    
+    /* Animation Variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .dark {
+    /* Dark Mode - Deep Navy & Blues */
+    --background: 220 30% 8%;
+    --foreground: 210 40% 95%;
+
+    --card: 220 25% 10%;
+    --card-foreground: 210 40% 95%;
+
+    --popover: 220 25% 10%;
+    --popover-foreground: 210 40% 95%;
+
+    /* Primary - Bright Blue */
+    --primary: 215 95% 60%;
+    --primary-foreground: 220 30% 8%;
+    --primary-glow: 215 100% 75%;
+
+    /* Secondary - Dark Blue */
+    --secondary: 220 25% 15%;
+    --secondary-foreground: 215 100% 70%;
+
+    /* Muted - Dark Grays */
+    --muted: 220 20% 15%;
+    --muted-foreground: 215 15% 65%;
+
+    /* Accent - Electric Blue */
+    --accent: 200 100% 70%;
+    --accent-foreground: 220 30% 8%;
+
+    --destructive: 0 75% 65%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 215 100% 70%;
+
+    /* Custom Dark Tokens */
+    --hero-gradient: linear-gradient(135deg, hsl(215 100% 70%) 0%, hsl(200 100% 70%) 100%);
+    --glass-bg: 220 25% 10% / 0.8;
+    --glass-border: 215 30% 30% / 0.3;
+    --shadow-primary: 215 100% 70% / 0.2;
+    --shadow-soft: 220 10% 5% / 0.3;
+  }
+
+
+  /* Smooth Scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Loading Animation Keyframes */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--shadow-primary));
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(var(--shadow-primary)), 0 0 60px hsl(var(--shadow-primary));
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Utility Classes */
+  .glass-effect {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(var(--glass-border));
+  }
+
+  .gradient-text {
+    background: var(--hero-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .skill-icon-grayscale {
+    filter: grayscale(100%);
+    transition: var(--transition-smooth);
+  }
+
+  .skill-icon-grayscale:hover {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
