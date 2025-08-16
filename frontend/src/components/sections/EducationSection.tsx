@@ -186,7 +186,7 @@ const EducationSection = () => {
               </h3>
             </div>
             
-            <p className="text-muted-foreground mb-4 sm:mb-6 text-center text-sm sm:text-base leading-relaxed px-2 text-justify">
+            <p className="text-muted-foreground mb-4 sm:mb-6 text-center text-sm sm:text-base leading-relaxed px-2">
               Beyond formal education, I actively engage in self-learning through online courses, documentation, and hands-on projects to stay updated with the latest technologies in web development, AI/ML, and software engineering.
             </p>
             
